@@ -1,0 +1,72 @@
+/* TOP Rock Paper Scissors exercise by elBrant, 24FEB2023 */
+
+* { border: 1px white solid; } 
+
+body {
+	background: lightgray;
+	color: #546E7A;
+	margin: 0;
+	padding: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+}
+
+/* TXT */
+h1, h2, p {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+h1 { font: small-caps 40px bolder Roboto, sans-serif; }
+h2 { font: small-caps 24px bolder Roboto, sans-serif; color: #546E7A; }
+h3 { font: small-caps 30px boldest Roboto, sans-serif; }
+p { font: small-caps 20px Roboto, sans-serif; }
+
+/* CLASSES */
+.intro {
+	height: 40%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+}
+
+.white { color: #FFF; }
+.mutedblue { color: #546E7A; }
+
+#myScore, #pcScore { 
+	margin-top: 30px;
+}
+
+/* ID'S */
+#sep { padding: 15px 30px; }
+
+#tally {
+	height: 40%;
+	display: flex;
+	flex-direction: row;
+	align-items: top;
+	justify-content: center;
+	font: small-caps 20px Roboto, sans-serif;
+	visibility: visible;
+}
+
+#toss, #winner { 
+	text-align: center;
+	margin: 0;
+	padding: 3px;
+ }
+
+#rock {	color: #546E7A; }
+#paper { color: #FFF; }
+#scissors { color: #546E7A; }
+
+/* eof */
