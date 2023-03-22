@@ -2,98 +2,121 @@
 // by elBrant, 24FEB2023
 
 
-// begin game with onclick event
+// establish global variables 
+let round;
+let myScore; myScore = isNaN(myScore) ? 0 : myScore;
+let pcScore; pcScore = isNaN(pcScore) ? 0 : pcScore; 
+let msg;
+let result;
+
+
+// playerSelection (begin game with onclick event)
 function game(x) {
-
-	// establish variables, retrieve user play
-	let myPlay = x;
-	let msg = "";
-	let result = "";
-
-	// generate pc play
-	let pcRoll = Math.floor(Math.random() * 3) + 1;
+	let myPlay = x; 
 	let pcPlay;
+
+	// getComputerChoice-- works
+	let pcRoll = Math.floor(Math.random() * 3) + 1;
 	if (pcRoll == 1) { pcPlay = "rock"; } 
 	else if (pcRoll == 2) { pcPlay = "paper"; } 
 	else { pcPlay = "scissors"; }
 
-	// establish HTML output
+	// establish HTML output -- works
 	document.getElementById("me").innerHTML = myPlay;
 	document.getElementById("pc").innerHTML = pcPlay;
-
-	// wwcd(), myWin(), pcWin()
-	if (!sessionStorage.getItem("myScore")) { 
-		sessionStorage.setItem("myScore",0); 
-	} else { 
-		(sessionStorage.getItem("myScore"));
-		if (isNaN(myScore)) { +myScore; }
-	}
-
-	if (!sessionStorage.getItem("pcScore")) { 
-		sessionStorage.setItem("pcScore",0); 
-	} else { 
-		(sessionStorage.getItem("pcScore"));
-		if (isNaN(pcScore)) { +pcScore; }
-	}
-	let turn = myScore + pcScore + 1;
-
 
 	// winner winner chicken dinner 
 	wwcd(myPlay, pcPlay);
 
-	// congrats msgs, scoring
+} // end game()
+
+
+// winner winner chicken dinner; determine winner; return results
+function wwcd(myPlay, pcPlay) {
+	if (myPlay === pcPlay) { msg = "tie!"; result = "this round won't count";  
+	// rock breaks scissors
+	} else if ((myPlay == "rock" && pcPlay == "scissors") || (myPlay == "scissors" && pcPlay == "rock")) {
+		msg = "rock breaks scissors <br>";
+		if (myPlay == "rock") {	myWin(); } else { pcWin(); }
+	// paper covers rock
+	} else if ((myPlay == "paper" && pcPlay == "rock") || (myPlay == "rock" && pcPlay == "paper")) {
+		msg = "paper covers rock";
+		if (myPlay == "paper") { myWin(); } else { pcWin(); }
+	// scissors cuts up paper
+	} else if (myPlay == "scissors" && pcPlay == "paper") {
+		msg = "scissors cut up paper";
+		myWin();
+	} else {  //(myPlay == "paper" && pcPlay == "scissors")
+		msg = "scissors cut up paper";
+		pcWin();
+	}
+	// establish HTML output -- works
 	document.getElementById("toss").innerHTML = msg;
 	document.getElementById("winner").innerHTML = result; 
-	document.getElementById("myScore").innerHTML = myScore;
-	document.getElementById("pcScore").innerHTML = pcScore;
 
-
-	function myWin() { 
-		myScore += 1; result = "myScore"; 
-
-		if (turn <= 2) { result = "YOU won round " + turn + "! whoohoo! " + myScore; }
- 		else if ((turn === 3) && (pcScore === 0)) { result = "welcome to the <br> HALL of FAME <br> please enter your initials below"; }
-		else if ((turn === 3) && (pcScore <= 2)) { result = "you just won the game! congratulations!!!"; }
-		else { result = "YOU won round " + turn + "! whoohoo! "; } 
-
-		console.log(turn, myScore);
-	} 
-
-	function pcWin() {
- 		pcScore++; result = "pcScore"; 
-
-
-		if (turn <= 2) { result = "PC wins round " + turn + "! " + pcScore; } 
-		else if ((turn === 3) && (!myScore)) { result = "dude, you need more practice... try again"; }
-		else if ((turn === 3) && (myScore <= 2)) { result = "pc wins game.. play again"; }
-		else { result = "PC wins round " + turn + "! " + pcScore; }
-
-		console.log(turn, pcScore);
-	}
-
-	function wwcd(myPlay, pcPlay) {
-		if (myPlay === pcPlay) { msg = "tie!"; result = "no winner this round";  
-		// rock breaks scissors
-		} else if ((myPlay == "rock" && pcPlay == "scissors") || (myPlay == "scissors" && pcPlay == "rock")) {
-			msg = "rock breaks scissors <br>";
-			if (myPlay == "rock") {	myWin(); } else { pcWin(); }
-		// paper covers rock
-		} else if ((myPlay == "paper" && pcPlay == "rock") || (myPlay == "rock" && pcPlay == "paper")) {
-			msg = "paper covers rock";
-			if (myPlay == "paper") { myWin(); } else { pcWin(); }
-		// scissors cuts up paper
-		} else if (myPlay == "scissors" && pcPlay == "paper") {
-			msg = "scissors cut up paper";
-			myWin();
-		} else {  //(myPlay == "paper" && pcPlay == "scissors")
-			msg = "scissors cut up paper";
-			pcWin();
-		}
-  	}
-
-
-// save score
-
-// loop until winner (5 times max)
-// eof -- end game
 }
+
+// scorekeeper
+function tally() {
+	if (!sessionStorage.getItem("myScore")) { 
+		myScore = 0; 
+		myScore = isNaN(myScore) ? 0 : myScore;
+		sessionStorage.setItem("myScore", myScore); 
+	} else { 
+		sessionStorage.getItem("myScore"); 
+		myScore = isNaN(myScore) ? 0 : myScore;
+		sessionStorage.setItem("myScore", myScore); 
+	}
+	console.log(myScore); 
+
+	if (!sessionStorage.getItem("pcScore")) {
+		pcScore = 0; 
+		pcScore = isNaN(pcScore) ? 0 : pcScore;
+		sessionStorage.setItem("pcScore", pcScore); 
+	} else { 
+		sessionStorage.getItem("pcScore"); 
+		pcScore = isNaN(pcScore) ? 0 : pcScore;
+		sessionStorage.setItem("pcScore",pcScore);
+	}
+	console.log(pcScore);
+
+	if ((myScore == 0) && (pcScore == 0)) { round = 1; 
+	} else { round = Number(myScore + pcScore) + 1; }
+	
+	console.log(round);
+}
+
+// player wins
+function myWin() { 
+	tally();
+	myScore += 1;  
+	sessionStorage.setItem("myScore", myScore);
+	document.getElementById("myWins").innerHTML = myScore;
+	document.getElementById("pcWins").innerHTML = pcScore;
+
+	// return results
+	if ((myScore === 3) && (!pcScore)) { result = "welcome to the <br> HALL of FAME <br> please enter your initials below"; gameover(); }
+	else if ((myScore === 3) && (pcScore <= 2)) { result = "winner winner chicken dinner! <br> congratulations!!!"; gameover(); }
+	else { result = "YOU won round " + round + "! whoohoo! "; } 
+	console.log(myScore, round);
+} 
+
+// pc wins
+function pcWin() {
+	tally();
+	pcScore += 1; 
+	sessionStorage.setItem("pcScore", pcScore); 
+	document.getElementById("pcWins").innerHTML = pcScore;
+	document.getElementById("myWins").innerHTML = myScore;
+	
+	// return results
+	if ((pcScore === 3) && (!myScore)) { result = "dude, you need more practice... try again"; gameover(); }
+	else if ((pcScore === 3) && (myScore <= 2)) { result = "good try! <br> computer wins game"; gameover(); }
+	else { result = "PC wins round " + round + "! "; }
+	console.log(pcScore, round);
+}
+
+function gameover() {
+	msg = 'thanks for playing! <br> <span onclick="window.location.reload();"> click here to play again</span>';
+}
+// eof -- end game
