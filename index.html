@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Play Rock-Paper-Scissors with me!</title>
+	<!-- a top assignment copywright &#0169; 2023 elbrant all rights reserved -->
 	<script type="text/javascript" src="rps.js"></script>
 	<link rel="stylesheet" type="text/css" href="rps.css">
 </head>
@@ -12,43 +13,39 @@
 	<div class="intro">
 		<!-- onmouseover the color changes, onmouseout the original color returns, onclick game(), results below --> 
 		
-		<h1>
-			<span id="rock" onmouseover="style.color='#FFF'" onmouseout="style.color='#546E7A'" onclick="game('rock')";>ROCK</span>
-			<span id="paper" onmouseover="style.color='#546E7A'" onmouseout="style.color='#FFF'" onclick="game('paper')">PAPER</span>
-			<span id="scissors" onmouseover="style.color='#FFF'" onmouseout="style.color='#546E7A'" onclick="game('scissors')">SCISSORS</span>
-		</h1>
-		<p>first 3 out of 5 wins!!</p>
+		<h1 id="rock" onmouseover="style.color='#FFF'" onmouseout="style.color='#546E7A'" onclick="game('rock')";>ROCK</h1>
+		<h1 id="paper" onmouseover="style.color='#546E7A'" onmouseout="style.color='#FFF'" onclick="game('paper')">PAPER</h1>
+		<h1 id="scissors" onmouseover="style.color='#FFF'" onmouseout="style.color='#546E7A'" onclick="game('scissors')">SCISSORS</h1>
+		
+
 
 		<div>
 			<h2 id="toss"> &nbsp; </h2>
 			<h2 id="winner"> &nbsp; </h2>
 		</div>
-	</div>
 
-	<!-- winner declared, score below 
-	<div id="msg"><h2 id="toss"></h2><h2 id="winner"></h2></div>
-	-->
-
-	<div id="tally">
-		<div>
-			<h2>PLAYER</h2>
-			<h2 id="me"></h2>
-			<h2 id="myWins"></h2>
+		<div id="tally">
+			<div>
+				<h2 class="white">PLAYER</h2>
+				<h2 id="me"> &nbsp; </h2>
+				<h1 id="myWins"> &nbsp; </h1>
+			</div>
+			<div><p> vs </p></div>		
+			<div>
+				<h2 class="white">COMPUTER</h2>
+				<h2 id="pc"> &nbsp; </h2>
+				<h1 id="pcWins"> &nbsp; </h1>
+			</div>
 		</div>
-		<div><p id="sep"> vs </p></div>		
-		<div>
-			<h2>COMPUTER</h2>
-			<h2 id="pc"></h2>
-			<h2 id="pcWins"></h2>
-		</div>
-	</div>
+		
+
+		<p>first 3 out of 5 wins!!</p>
 
 
-	<!-- hall of fame records player initials if winner is declared after 3 rounds - otherwise game continues with round 4 and 5, fanfare announces winner, restart game -->
-
+	</div> <!-- close intro -->
 
 	<div id="footer">
-		<p>a top assignment<br />copywright &#0169; 2023 an elbrant design all rights reserved</p>
+		<p>a top assignment<br>copywright &#0169; 2023 elbrant</p>
 	</div>
 </body>
 </html>

@@ -1,14 +1,14 @@
 /* TOP Rock Paper Scissors exercise by elBrant, 24FEB2023 */
 
-* { border: 1px white solid; } 
-
 body {
 	background: lightgray;
 	color: #546E7A;
 	margin: 0;
 	padding: 0;
-	width: 100vw;
+	width: 74vw;
 	height: 100vh;
+	border-left: 13vw solid #546E7A;
+	border-right: 13vw solid #546E7A;
 }
 
 footer {
@@ -19,41 +19,39 @@ footer {
 
 /* TXT */
 h1, h2, p {
-	margin: 0;
+	margin: 0 5px 0;
 	padding: 0;
 	text-align: center;
 }
 
 h1 { font: small-caps 40px bolder Roboto, sans-serif; }
-h2 { font: small-caps 24px bolder Roboto, sans-serif; color: #546E7A; }
+h2 { font: small-caps 24px bolder Roboto, sans-serif; }
 h3 { font: small-caps 30px boldest Roboto, sans-serif; }
-p { font: small-caps 20px Roboto, sans-serif; }
+p,intro  { font: small-caps 16px Roboto, sans-serif; }
+p.footer { font-size: 8px; }
 
 /* CLASSES */
 .intro {
-	height: 40%;
+	height: 95%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-
 }
 
-.white { color: #FFF; }
 .mutedblue { color: #546E7A; }
+.white { color: #FFF; }
 
+/* ID'S */
 #myScore, #pcScore { 
 	margin-top: 30px;
 }
 
-/* ID'S */
-#sep { padding: 15px 30px; }
-
 #tally {
-	height: 40%;
+	//height: 20%;
 	display: flex;
 	flex-direction: row;
-	align-items: top;
+	align-items: bottom;
 	justify-content: center;
 	font: small-caps 20px Roboto, sans-serif;
 	visibility: visible;
