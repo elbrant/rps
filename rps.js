@@ -111,7 +111,6 @@ function track() {
 	round = isNaN(round) ? 0 : round;
 	if ((round === 0) || (round < 5)) { round++; }
 	else { window.location.reload(); }
-	console.log(round);
 
 	// HTML output
 	$("myWins").innerHTML = myScore;
