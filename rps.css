@@ -26,7 +26,7 @@ h1, h2, p {
 
 h1 { font: small-caps 40px bolder Roboto, sans-serif; }
 h2 { font: small-caps 24px bolder Roboto, sans-serif; }
-h3 { font: small-caps 30px boldest Roboto, sans-serif; }
+h3 { font: small-caps 30px bolder Roboto, sans-serif; }
 p,intro  { font: small-caps 16px Roboto, sans-serif; }
 p.footer { font-size: 8px; }
 
